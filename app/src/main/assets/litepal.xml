@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="YongNongApp" ></dbname>
+
+    <version value="7" ></version>
+
+    <list>
+        <mapping class="com.android.yongnongpda.bean.db.OrganBean"></mapping>
+        <mapping class="com.android.yongnongpda.bean.db.WarehouseBean"></mapping>
+        <mapping class="com.android.yongnongpda.bean.db.ProductBean"></mapping>
+        <mapping class="com.android.yongnongpda.bean.CodeBean"></mapping>
+    </list>
+</litepal>
