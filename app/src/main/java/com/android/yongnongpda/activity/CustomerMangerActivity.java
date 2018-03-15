@@ -237,4 +237,9 @@ public class CustomerMangerActivity extends AppBaseActivity {
         return bundles;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
 }

@@ -54,7 +54,11 @@ public class AddOrAlertCustomerActivity extends AppBaseActivity {
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case AppConfig.HANDLER_MESSAGE:
-                    Toast.makeText(AddOrAlertCustomerActivity.this, "新增成功", Toast.LENGTH_SHORT).show();
+                    if ("2".equals(type)) {
+                        Toast.makeText(AddOrAlertCustomerActivity.this, "新增成功", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(AddOrAlertCustomerActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                    }
                     finish();
                     break;
                 default:
