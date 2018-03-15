@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.yongnongpda.activity.BatchScanActivity;
@@ -15,9 +16,9 @@ import com.android.yongnongpda.activity.CustomerMangerActivity;
 import com.android.yongnongpda.activity.DeleteCodeActivity;
 import com.android.yongnongpda.activity.DownLoadDataActivity;
 import com.android.yongnongpda.activity.LogUploadActivity;
-import com.android.yongnongpda.activity.LoginActivity;
 import com.android.yongnongpda.activity.LookFilesActivity;
 import com.android.yongnongpda.confing.AppConfig;
+import com.android.yongnongpda.utils.AssistHelper;
 import com.android.yongnongpda.utils.DialogHelper;
 import com.winsafe.mylibrary.view.AppBaseActivity;
 
@@ -27,6 +28,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppBaseActivity {
 
+    @BindView(R.id.tvUserName)
+    TextView tvUserName;
     @BindView(R.id.btnScan)
     Button btnScan;
     @BindView(R.id.btnFileManger)
@@ -56,8 +59,7 @@ public class MainActivity extends AppBaseActivity {
     @Override
     protected void initView() {
         setHeader("主页", true, false, 0, "", null);
-
-
+        tvUserName.setText("当前用户： "+ AssistHelper.getUserName());
     }
 
     @Override
@@ -97,7 +99,7 @@ public class MainActivity extends AppBaseActivity {
                         dialog.dismiss();
                         if (which == 0) {
                             startDialogProgress("下载中···");
-                            DownLoadDataActivity.downLoadData(MainActivity.this,handler);
+                            DownLoadDataActivity.downLoadData(MainActivity.this, handler);
 
                         } else if (which == 1) {
                             openActivity(MainActivity.this, BatchScanActivity.class, false);
@@ -131,9 +133,9 @@ public class MainActivity extends AppBaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         if (which == 0) {
-                            DialogHelper.mDialog(MainActivity.this,"上传成功", AppConfig.DIALOG_OUT);
+                            DialogHelper.mDialog(MainActivity.this, "上传成功", AppConfig.DIALOG_OUT);
                         } else if (which == 1) {
-                            DialogHelper.mDialog(MainActivity.this,"确定要删除吗？",AppConfig.DIALOG_DELETE);
+                            DialogHelper.mDialog(MainActivity.this, "确定要删除吗？", AppConfig.DIALOG_DELETE);
                         } else {
                             openActivity(MainActivity.this, LookFilesActivity.class, false);
                         }
@@ -164,9 +166,9 @@ public class MainActivity extends AppBaseActivity {
                         if (which == 0) {
                             openActivity(MainActivity.this, CustomerMangerActivity.class, false);
                         } else if (which == 1) {
-                            DialogHelper.mDialog(MainActivity.this,"检测到需要更新组件，是否立即更新", AppConfig.DIALOG_UPDATE);
+                            DialogHelper.mDialog(MainActivity.this, "检测到需要更新组件，是否立即更新", AppConfig.DIALOG_UPDATE);
                         } else {
-                            DialogHelper.mDialog(MainActivity.this,"您确定要退出吗？", AppConfig.DIALOG_EXIT);
+                            DialogHelper.mDialog(MainActivity.this, "您确定要退出吗？", AppConfig.DIALOG_EXIT);
                         }
                         dialog.dismiss();
                     }
@@ -184,4 +186,10 @@ public class MainActivity extends AppBaseActivity {
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

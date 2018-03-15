@@ -47,7 +47,7 @@ public class OkHttpHelper {
      * @param loadingTip 加载提示文本
      */
     public static void post(final Context context, final String url, Map<String, String> map,
-                            final Handler handler, String loadingTip) {
+                                 final Handler handler,final int mWhat, String loadingTip) {
         startDialogProgress(context, loadingTip);
         OkHttpUtils.post()
                 .url(url)
@@ -65,11 +65,11 @@ public class OkHttpHelper {
                         stopDialogProgress();
                         Log.i("TAG", s);
                         String returnCode = s.substring(11, 12);
-                        String returnMsg = s.substring(s.lastIndexOf("=")+1);
+                        String returnMsg = s.substring(s.lastIndexOf("=") + 1);
                         //Log.i("TAG", returnCode + returnMsg);
                         if (AppConfig.RETURN_SUCCESS.equals(returnCode)) {
                             Message message = new Message();
-                            message.what = AppConfig.HANDLER_MESSAGE;
+                            message.what = mWhat;
                             handler.sendMessage(message);
                         } else {
                             Toast.makeText(context, returnMsg, Toast.LENGTH_SHORT).show();
@@ -78,6 +78,38 @@ public class OkHttpHelper {
                     }
                 });
     }
+
+    /**
+     * @param context
+     * @param url        地址
+     * @param map        传递参数
+     * @param handler
+     * @param loadingTip 加载提示文本
+     */
+    public static void postData(final Context context, final String url, Map<String, String> map,
+                                final Handler handler, String loadingTip) {
+        startDialogProgress(context, loadingTip);
+        OkHttpUtils.post()
+                .url(url)
+                .params(map)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e) {
+                        stopDialogProgress();
+                        Toast.makeText(context, context.getResources().getString(R.string.network_wifi_low), Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onResponse(Call call, String s) {
+                        stopDialogProgress();
+                        Message message = new Message();
+                        message.what = AppConfig.HANDLER_MESSAGE;
+                        message.obj = s;
+                        handler.sendMessage(message);
+                    }
+                });
+    }
+
 
     /**
      * 文件上传

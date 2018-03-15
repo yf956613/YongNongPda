@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -66,13 +67,14 @@ public class BatchScanActivity extends AppBaseActivity{
     private List<WarehouseBean> sendWareHeList = new ArrayList<>();
     private List<WarehouseBean> receiveWareHeList = new ArrayList<>();
     private List<ProductBean> productList = new ArrayList<>();
-
     private CommonNameAdapter adapter;
 
     private String sendOrganName="",sendOrganCode="",rvOrganName="",rvOrganCode="",
             sendWarehouseName="",sendWarehouseCode="",receiveWarehouseName="",receiveWarehouseCode="",
             productNo="",productId="",productName="";
     private int boxNum,tuoNum;
+
+
     @Override
     protected int activityLayoutId() {
         return R.layout.activity_batch_scan;
@@ -114,7 +116,7 @@ public class BatchScanActivity extends AppBaseActivity{
 
     //发货仓库list
     private void getSendWarehouseList(String key) {
-        List<WarehouseBean> list = DataSupport.where("type=?", "1").find(WarehouseBean.class);
+        List<WarehouseBean> list = DataSupport.where("type=? and code=?", "1",sendOrganCode).find(WarehouseBean.class);
         WarehouseBean bean;
         sendWareHeList.clear();
         for (int i = 0; i < list.size(); i++) {
@@ -160,9 +162,9 @@ public class BatchScanActivity extends AppBaseActivity{
         lvData.setAdapter(adapter);
     }
 
-    //发货仓库list
+    //收货仓库list
     private void getReceiveWarehouseList(String key) {
-        List<WarehouseBean> list = DataSupport.where("type=?", "2").find(WarehouseBean.class);
+        List<WarehouseBean> list = DataSupport.where("type=? and code=?", "2",rvOrganCode).find(WarehouseBean.class);
         WarehouseBean bean;
         receiveWareHeList.clear();
         for (int i = 0; i < list.size(); i++) {
@@ -235,6 +237,7 @@ public class BatchScanActivity extends AppBaseActivity{
                 break;
             case R.id.tvSendOrgan:
                 dialog("发货机构", tvSendOrgan, DIALOG_01);
+
                 break;
             case R.id.tvSendWarehouse:
                 dialog("发货仓库", tvSendWarehouse, DIALOG_02);
@@ -291,9 +294,18 @@ public class BatchScanActivity extends AppBaseActivity{
                 dialog.dismiss();
                 if (flag == DIALOG_01) {
                     OrganBean s = sendOrganList.get(position);
-                    sendOrganName=s.getName();
-                    sendOrganCode=s.getOrganId();
+                    sendOrganName=s.getName();//机构名称
+                    sendOrganCode=s.getOrganId();//机构id
                     text.setText(s.getName());
+
+                    //选择机构如果此时仓库下一条数据
+                    List<WarehouseBean> list = DataSupport.where("type=? and code=?", "1",sendOrganCode).find(WarehouseBean.class);
+                    if (list.size()==1) {
+                        sendWarehouseName=list.get(0).getName(); //仓库名称
+                        sendWarehouseCode=list.get(0).getWarehouseId(); //仓库编号
+                        tvSendWarehouse.setText(sendWarehouseName);
+                    }
+
                 } else if (flag == DIALOG_02) {
                     WarehouseBean w = sendWareHeList.get(position);
                     sendWarehouseName=w.getName();
@@ -304,6 +316,15 @@ public class BatchScanActivity extends AppBaseActivity{
                     rvOrganName=s.getName();
                     rvOrganCode=s.getOrganId();
                     text.setText(s.getName());
+
+                    //选择机构如果此时仓库下一条数据
+                    List<WarehouseBean> list = DataSupport.where("type=? and code=?", "2",rvOrganCode).find(WarehouseBean.class);
+                    if (list.size()==1) {
+                        receiveWarehouseName=list.get(0).getName();
+                        receiveWarehouseCode=list.get(0).getWarehouseId();
+                        tvReceiveWarehouse.setText(receiveWarehouseName);
+                    }
+
                 } else if (flag == DIALOG_04) {
                     WarehouseBean w = receiveWareHeList.get(position);
                     receiveWarehouseName=w.getName();

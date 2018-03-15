@@ -21,12 +21,9 @@ import com.winsafe.mylibrary.scan.Scanner;
 import com.winsafe.mylibrary.utils.DateTimeHelper;
 import com.winsafe.mylibrary.view.AppBaseActivity;
 
-import org.litepal.crud.DataSupport;
-
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -165,7 +162,7 @@ public class ScanMessageActivity extends AppBaseActivity {
                 List<CodeBean> list = CodeHelper.getScannedList(productId, sendOrganId, sendWarehouseId, receiveOrganId, receiveWarehouseId);
                 UploadFileInfoHelpter.uploadFiles(ScanMessageActivity.this, list, null);
 
-                CodeHelper.deleteScannedList(productId, sendOrganId, sendWarehouseId, receiveOrganId, receiveWarehouseId);
+              //  CodeHelper.deleteScannedList(productId, sendOrganId, sendWarehouseId, receiveOrganId, receiveWarehouseId);
                 break;
 
             default:

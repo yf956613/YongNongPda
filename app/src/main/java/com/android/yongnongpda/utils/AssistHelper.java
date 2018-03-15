@@ -27,8 +27,8 @@ public class AssistHelper {
 
     //获取用户名
     public static String getUserName() {
-//        return MyApp.shared.getValueByKey(AppConfig.USERNAME);
-        return "admin";
+        return MyApp.shared.getValueByKey(AppConfig.USERNAME);
+//        return "admin";
     }
 
     //获取密码

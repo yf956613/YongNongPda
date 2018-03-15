@@ -31,7 +31,7 @@
             android:layout_marginRight="@dimen/margin_10"
             android:gravity="center_vertical"
             android:textColor="@color/c_black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -56,9 +56,14 @@
             android:layout_marginRight="@dimen/margin_10"
             android:gravity="center_vertical"
             android:textColor="@color/c_black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/header_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,8 +86,9 @@
             android:layout_marginRight="@dimen/margin_10"
             android:gravity="center_vertical"
             android:textColor="@color/c_black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -105,9 +111,14 @@
             android:layout_marginRight="@dimen/margin_10"
             android:gravity="center_vertical"
             android:textColor="@color/c_black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/header_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -130,7 +141,7 @@
             android:layout_marginRight="@dimen/margin_10"
             android:gravity="center_vertical"
             android:textColor="@color/c_black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -159,6 +170,11 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/header_title" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -184,12 +200,6 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="@dimen/margin_10"
-        android:background="@color/header_title" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -207,8 +217,8 @@
             android:id="@+id/tvBoxNum"
             android:layout_width="@dimen/margin_50"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/margin_10"
             android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/margin_10"
             android:gravity="center"
             android:textColor="@color/c_red"
             android:textSize="@dimen/size_22" />

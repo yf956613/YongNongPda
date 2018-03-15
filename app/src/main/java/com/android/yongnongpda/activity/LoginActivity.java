@@ -146,7 +146,7 @@ public class LoginActivity extends AppBaseActivity {
                 Map<String, String> map = new HashMap<>();
                 map.put(AppConfig.USERNAME, user);
                 map.put(AppConfig.PASSWORD, passwd);
-                OkHttpHelper.post(LoginActivity.this, AppConfig.URL_LOGIN, map, handler, "登录中···");
+                OkHttpHelper.post(LoginActivity.this, AppConfig.URL_LOGIN, map, handler,AppConfig.HANDLER_MESSAGE, "登录中···");
                 break;
 
             default:

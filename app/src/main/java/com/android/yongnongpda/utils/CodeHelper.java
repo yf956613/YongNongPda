@@ -44,12 +44,12 @@ public class CodeHelper {
             Toast.makeText(context, AssistHelper.showString(context, R.string.toast_code_unit_error), Toast.LENGTH_SHORT).show();
             return false;
         }
-        String productNo = code.substring(12, 15);//产品规格
-        if (!queryProductNo().contains(productNo)) {
-            MyApp.playSound(1);
-            Toast.makeText(context, AssistHelper.showString(context, R.string.toast_code_unit_error), Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        String productNo = code.substring(12, 15);//产品规格
+//        if (!queryProductNo().contains(productNo)) {
+//            MyApp.playSound(1);
+//            Toast.makeText(context, AssistHelper.showString(context, R.string.toast_code_unit_error), Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
         return true;
     }
 
@@ -155,6 +155,29 @@ public class CodeHelper {
     public static boolean isSuccessDeleteUserCode() {
         DataSupport.deleteAll(CodeBean.class, "userName=?", AssistHelper.getUserName());
         List<CodeBean> list = DataSupport.where("userName=?", AssistHelper.getUserName()).find(CodeBean.class);
+        if (list.size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param code
+     * @return
+     */
+
+    public static boolean deleteUserCode(String code) {
+        DataSupport.deleteAll(CodeBean.class, "userName=? and code=?", AssistHelper.getUserName(),code);
+        List<CodeBean> list = DataSupport.where("userName=? and code=?", AssistHelper.getUserName(),code).find(CodeBean.class);
+        if (list.size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean queryUserCode(String code) {
+        List<CodeBean> list = DataSupport.where("userName=? and code=?", AssistHelper.getUserName(),code).find(CodeBean.class);
         if (list.size() == 0) {
             return true;
         }

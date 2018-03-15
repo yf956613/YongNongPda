@@ -5,51 +5,58 @@ package com.android.yongnongpda.bean;
  */
 
 public class CustomerBean {
-    private String id;
-    private String cNumber;
-    private String name;
-    private String phone;
-    private String address;
+    private String CID;//客商编号
+    private String CName;//客商名称
+    private String CAddress;//客商地址
+    private String LID;//联系人编号
+    private String LName;//联系人名称
+    private String LPhone;//联系人手机
 
-    public String getId() {
-        return id;
+    public String getCID() {
+        return CID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCID(String CID) {
+        this.CID = CID;
     }
 
-    public String getcNumber() {
-        return cNumber;
+    public String getCName() {
+        return CName;
     }
 
-    public void setcNumber(String cNumber) {
-        this.cNumber = cNumber;
+    public void setCName(String CName) {
+        this.CName = CName;
     }
 
-    public String getName() {
-        return name;
+    public String getCAddress() {
+        return CAddress;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCAddress(String CAddress) {
+        this.CAddress = CAddress;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getLID() {
+        return LID;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setLID(String LID) {
+        this.LID = LID;
     }
 
-
-
-    public String getAddress() {
-        return address;
+    public String getLName() {
+        return LName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLName(String LName) {
+        this.LName = LName;
+    }
+
+    public String getLPhone() {
+        return LPhone;
+    }
+
+    public void setLPhone(String LPhone) {
+        this.LPhone = LPhone;
     }
 }

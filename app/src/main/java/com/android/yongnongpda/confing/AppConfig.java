@@ -15,27 +15,27 @@ public class AppConfig {
     public static String URL_BASE = "http://192.168.20.205:8802/";//测试
 
     //登录
-    public static final String URL_LOGIN = AppConfig.URL_BASE+"is/scanner/loginAction.do";
-    //发货机构
-    public static final String URL_SEND_ORGAN = "uploadController/getCompanyInfo.do";
-    //收货机构
-    public static final String URL_RECEIVE_ORGAN = "uploadController/getAllDealerInfo.do";
+    public static final String URL_LOGIN = AppConfig.URL_BASE + "is/scanner/loginAction.do";
+    //机构(type 1 send  2 receive)
+    public static final String URL_ORGAN = AppConfig.URL_BASE + "is/scanner/downloadOrganAction.do";
+    //仓库(type 1 send  2 receive)
+    public static final String URL_WAREHOUSE = AppConfig.URL_BASE + "is/scanner/downloadWarehouseAction.do";
     //产品下载
-    public static final String URL_PRODUCT = AppConfig.URL_BASE+"is/scanner/downloadProductAction.do";
+    public static final String URL_PRODUCT = AppConfig.URL_BASE + "is/scanner/downloadProductAction.do";
+    //客商信息
+    public static final String URL_CUSTOMER = AppConfig.URL_BASE + "is/scanner/customerManagerAction.do";
     //上传日志
-    public static final String URL_LOG_LIST = "uploadController/getUploadLog.do";
-    //日志详情
-    public static final String URL_LOG_INFO = "uploadController/getInfo.do";
-    //修改密码
-    public static final String URL_CHANGE_PWD = "uploadController/updPassword.do";
+    public static final String URL_LOG_LIST = AppConfig.URL_BASE + "is/scanner/downloadIdcodeUploadLog.do";
     //文件上传
-    public static final String URL_LOADIDCODEFILE = "uploadController/upload.do";
+    public static final String URL_LOADIDCODEFILE = AppConfig.URL_BASE + "is/scanner/uploadIdcodeAction.do";
     //版本更新
     public static final String CHECK_VERSION_URL = "http://d.winsafe.cn/apk/UpdateService.ashx?action={0}&appName={1}&appVer={2}&appType=android";
 
     //参数
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
+    public static final String TYPE = "type";
+    public static final String BILLSORT = "billsort";
     public static final String ISSAVE_PASSWORD = "isSave";
     public static final String ACCESSTOKEN = "accessToken";
     //bundle
@@ -60,10 +60,14 @@ public class AppConfig {
     public static final String RETURN_INVALID = "512";//无效
     public static final String RETURN_EXPIRE = "513";//过期
     public static final int HANDLER_MESSAGE = 200;
+    public static final int HANDLER_MESSAGE_DELETE = 201;
 
     //dialog  --->>  0出库上传 1出库删除  2更新 3退出
     public static final int DIALOG_OUT = 0;
     public static final int DIALOG_DELETE = 1;
     public static final int DIALOG_UPDATE = 2;
     public static final int DIALOG_EXIT = 3;
+
+    //type
+    public static final String SCAN_OUT = "18";//出库
 }
